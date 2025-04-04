@@ -1,26 +1,26 @@
-
-# 🔄 Automate with n8n and a Local AI Agent
+# 🔄 Automate with n8n and AI
 
 ## Goal
 
-In this module, you'll learn how to use [n8n](https://n8n.io/) in combination with a local LLM (via Ollama) and [LangChain](https://www.langchain.com/) to build a simple AI-powered automation.
+In this repository, you'll find examples of how to use [n8n](https://n8n.io/) with AI capabilities to build powerful automations.
 
-You’ll create a small automation pipeline that:
-- Receives a support ticket
-- Summarizes it using a local LLM via LangChain
-- Sends a Slack message or email with the summary
+## Included Workflows
+
+### 📰 Web Scraping and Summarization Workflow
+
+This workflow:
+- Scrapes the latest Paul Graham essays from his website
+- Extracts the text content
+- Uses OpenAI's GPT model to generate concise summaries
+- Returns the titles, summaries, and URLs
 
 ## Prerequisites
 
 - [Docker](https://www.docker.com/) installed and running
 - [n8n Docker Compose setup](https://docs.n8n.io/hosting/installation/docker/) (included in this repo)
-- [Ollama](https://ollama.com/) running locally
+- OpenAI API key for the summarization workflow
 
-```bash
-ollama pull mistral:latest
-```
-
-## Challenge
+## Getting Started
 
 1. Start n8n locally:
 ```bash
@@ -28,18 +28,15 @@ docker-compose up -d
 ```
 n8n will be available at: [http://localhost:5678](http://localhost:5678)
 
-2. Import the workflow in `support_summary_workflow.json`
+2. Import the workflow in `Scrape_and_summarize_webpages_with_AI.json`
 
-3. Review the following nodes:
-- 📨 HTTP Trigger: receives ticket data
-- 🧠 LangChain Node (local model via Ollama): summarizes the message
-- 🔁 Responds with summary (or sends via webhook/email)
+3. Configure your OpenAI API key in the credentials section
 
-4. Your Task:
-- Open the **LangChain node** and adjust the **prompt** to produce clean, bullet-point summaries.
-- Optional: Add a field that highlights urgency or customer mood.
+4. Run the workflow to fetch and summarize the latest essays
 
-## Bonus
+## Customization Ideas
 
-- Add conditional routing based on sentiment or topic
-- Log all outputs to a Google Sheet or database
+- Modify the workflow to scrape different websites
+- Change the OpenAI model or customize the prompts
+- Add notification outputs (Slack, email, etc.)
+- Schedule the workflow to run periodically
